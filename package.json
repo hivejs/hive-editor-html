@@ -1,5 +1,5 @@
 {
-  "name": "hive-editor-dom",
+  "name": "hive-editor-html",
   "version": "0.0.1",
   "description": "Rich text editor for hive.js",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hivejs/hive-editor-dom.git"
+    "url": "https://github.com/hivejs/hive-editor-html.git"
   },
   "keywords": [
     "hivejs",
@@ -22,7 +22,7 @@
   "author": "Marcel Klehr <mklehr@gmx.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hivejs/hive-editor-dom/issues"
+    "url": "https://github.com/hivejs/hive-editor-html/issues"
   },
-  "homepage": "https://github.com/hivejs/hive-editor-dom"
+  "homepage": "https://github.com/hivejs/hive-editor-html"
 }

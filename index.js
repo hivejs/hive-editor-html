@@ -9,8 +9,8 @@ function setup(plugin, imports, register) {
   var ot = imports.ot
 
   assets.registerModule(path.join(__dirname, 'client.js'))
-  
-  ot.registerOTType('dom', domOT)
+
+  ot.registerOTType('html', domOT)
 
   register()
 }
