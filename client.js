@@ -1,14 +1,15 @@
 var bindEditor = require('gulf-contenteditable')
 
 module.exports = setup
-module.exports.consumes = ['editor']
+module.exports.consumes = ['ui', 'editor']
 module.exports.provides = []
 function setup(plugin, imports, register) {
   var editor = imports.editor
+    , ui = imports.ui
 
   // Load ckeditor
   var script = document.createElement('script')
-  script.src = '//cdn.ckeditor.com/4.5.1/full/ckeditor.js'
+  script.src = ui.baseURL+'/static/hive-editor-html/ckeditor/ckeditor.js'
   document.body.appendChild(script)
 
   editor.registerEditor('html', function*() {
@@ -33,7 +34,7 @@ function setup(plugin, imports, register) {
     document.querySelector('#editor').style['height'] = '100%'
     document.querySelector('#cke_doc').style['height'] = '100%'
     document.querySelector('#cke_doc .cke_inner').style['height'] = '100%'
-    document.querySelector('#cke_doc .cke_inner .cke_contents').style['height'] = 'calc(100% - 20em)'
+    document.querySelector('#cke_doc .cke_inner .cke_contents').style['height'] = 'calc(100% - 5em)'
 
     // bind editor
     var editable = document.querySelector('#cke_doc .cke_wysiwyg_frame').contentDocument.body
