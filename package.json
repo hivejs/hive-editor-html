@@ -1,12 +1,12 @@
 {
   "name": "hive-editor-html",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Rich text editor for hive.js",
   "main": "index.js",
   "dependencies": {
-    "gulf": "1.x"
-  , "gulf-contenteditable": "1.x"
-  , "dom-ot": "2.x"
+    "gulf": "1.x",
+    "gulf-contenteditable": "1.x",
+    "dom-ot": "2.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
