@@ -1,5 +1,5 @@
 {
-  "name": "hive-editor-html",
+  "name": "hive-editor-html-ckeditor",
   "version": "0.2.0",
   "description": "Rich text editor for hive.js",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hivejs/hive-editor-html.git"
+    "url": "https://github.com/hivejs/hive-editor-html-ckeditor.git"
   },
   "keywords": [
     "hivejs",
@@ -22,7 +22,7 @@
   "author": "Marcel Klehr <mklehr@gmx.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hivejs/hive-editor-html/issues"
+    "url": "https://github.com/hivejs/hive-editor-html-ckeditor/issues"
   },
-  "homepage": "https://github.com/hivejs/hive-editor-html"
+  "homepage": "https://github.com/hivejs/hive-editor-html-ckeditor"
 }
