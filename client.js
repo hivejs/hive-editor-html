@@ -12,7 +12,8 @@ function setup(plugin, imports, register) {
   script.src = ui.baseURL+'/static/hive-editor-html/ckeditor/ckeditor.js'
   document.body.appendChild(script)
 
-  editor.registerEditor('html', function*() {
+  editor.registerEditor('CKeditor', 'html', 'A feature-rich HTML editor'
+  , function*(el) {
     // configure ckeditor
     CKEDITOR.editorConfig = function( config ) {
       config.toolbarGroups = [
@@ -38,7 +39,7 @@ function setup(plugin, imports, register) {
     // Replace textarea
     var textarea = document.createElement('textarea')
     textarea.setAttribute('id', 'doc')
-    document.querySelector('#editor').appendChild(textarea)
+    el.appendChild(textarea)
     CKEDITOR.replace(textarea)
     yield function(cb) {
       CKEDITOR.on('instanceReady', function() {
