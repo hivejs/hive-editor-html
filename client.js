@@ -9,7 +9,7 @@ function setup(plugin, imports, register) {
 
   // Load ckeditor
   var script = document.createElement('script')
-  script.src = ui.baseURL+'/static/hive-editor-html/ckeditor/ckeditor.js'
+  script.src = ui.baseURL+'/static/hive-editor-html-ckeditor/ckeditor/ckeditor.js'
   document.body.appendChild(script)
 
   editor.registerEditor('CKeditor', 'html', 'A feature-rich HTML editor'
