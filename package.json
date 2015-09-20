@@ -1,6 +1,6 @@
 {
   "name": "hive-editor-html-ckeditor",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Rich text editor for hive.js",
   "main": "index.js",
   "dependencies": {
