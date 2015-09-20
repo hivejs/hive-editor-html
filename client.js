@@ -19,7 +19,7 @@ function setup(plugin, imports, register) {
     textarea.setAttribute('id', 'doc')
     el.appendChild(textarea)
     CKEDITOR.replace(textarea, {
-      removeButtons: 'Underline,Undo,Redo,Source,About'
+      removeButtons: 'Anchor,Underline,Undo,Redo,Source,About'
     })
     yield function(cb) {
       CKEDITOR.on('instanceReady', function() {
