@@ -47,7 +47,7 @@ function setup(plugin, imports, register) {
     content.style['height'] = 'calc(100% - 5em)'
     contenteditable.style['height'] = '100%'
     contenteditable.style['overflow-y'] = 'scroll'
-    contenteditable.style['padding'] = '3px'
+    contenteditable.style['padding'] = '5px'
 
     // bind editor
     return bindEditor(contenteditable)
