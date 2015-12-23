@@ -44,9 +44,10 @@ function setup(plugin, imports, register) {
 
     // Maximize editor
     document.querySelector('#editor').style['height'] = '100%'
-    content.style['height'] = '100%'
+    content.style['height'] = 'calc(100% - 5em)'
     contenteditable.style['height'] = '100%'
     contenteditable.style['overflow-y'] = 'scroll'
+    contenteditable.style['padding'] = '3px'
 
     // bind editor
     return bindEditor(contenteditable)
