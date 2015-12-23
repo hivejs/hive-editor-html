@@ -14,13 +14,28 @@ function setup(plugin, imports, register) {
 
   editor.registerEditor('CKeditor', 'html', 'A feature-rich HTML editor'
   , function*(el) {
-    // Replace textarea
-    var textarea = document.createElement('textarea')
-    textarea.setAttribute('id', 'doc')
-    el.appendChild(textarea)
-    CKEDITOR.replace(textarea, {
-      removeButtons: 'Anchor,Underline,Undo,Redo,Source,About'
+    CKEDITOR.disableAutoInline = true
+
+    // Create toolbar
+    var toolbar = document.createElement('div')
+    toolbar.setAttribute('class', 'Editor__toolbar')
+    toolbar.setAttribute('id', 'editorToolbar')
+    el.appendChild(toolbar)
+
+    // Create content
+    var content = document.createElement('div')
+    content.setAttribute('class', 'Editor__content')
+    el.appendChild(content)
+
+    // Create contenteditable
+    var contenteditable = document.createElement('div')
+    contenteditable.setAttribute('contenteditable', 'true')
+    content.appendChild(contenteditable)
+
+    CKEDITOR.inline(contenteditable, {
+      sharedSpaces: { top: 'editorToolbar' }
     })
+
     yield function(cb) {
       CKEDITOR.on('instanceReady', function() {
         cb()
@@ -28,20 +43,13 @@ function setup(plugin, imports, register) {
     }
 
     // Maximize editor
-    document.body.style['position'] = 'absolute'
-    document.body.style['bottom'] =
-    document.body.style['top'] =
-    document.body.style['left'] =
-    document.body.style['right'] = '0'
-    document.body.style['overflow'] = 'hidden'
     document.querySelector('#editor').style['height'] = '100%'
-    document.querySelector('#cke_doc').style['height'] = '100%'
-    document.querySelector('#cke_doc .cke_inner').style['height'] = '100%'
-    document.querySelector('#cke_doc .cke_inner .cke_contents').style['height'] = 'calc(100% - 5em)'
+    content.style['height'] = '100%'
+    contenteditable.style['height'] = '100%'
+    contenteditable.style['overflow-y'] = 'scroll'
 
     // bind editor
-    var editable = document.querySelector('#cke_doc .cke_wysiwyg_frame').contentDocument.body
-    return bindEditor(editable)
+    return bindEditor(contenteditable)
   })
   register()
 }
