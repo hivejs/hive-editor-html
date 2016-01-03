@@ -2,14 +2,14 @@ var path = require('path')
   , domOT = require('dom-ot')
 
 module.exports = setup
-module.exports.consumes = ['assets', 'ot']
+module.exports.consumes = ['ui', 'ot']
 
 function setup(plugin, imports, register) {
-  var assets = imports.assets
+  var ui = imports.ui
   var ot = imports.ot
 
-  assets.registerModule(path.join(__dirname, 'client.js'))
-  assets.registerStaticDir(path.join(__dirname, 'ckeditor'))
+  ui.registerModule(path.join(__dirname, 'client.js'))
+  ui.registerStaticDir(path.join(__dirname, 'ckeditor'))
 
   ot.registerOTType('html', domOT)
 

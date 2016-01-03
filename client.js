@@ -13,7 +13,7 @@ function setup(plugin, imports, register) {
   document.body.appendChild(script)
 
   editor.registerEditor('CKeditor', 'html', 'A feature-rich HTML editor'
-  , function*(el) {
+  , function(el) {
     CKEDITOR.disableAutoInline = true
 
     // Create toolbar
@@ -32,25 +32,23 @@ function setup(plugin, imports, register) {
     contenteditable.setAttribute('contenteditable', 'true')
     content.appendChild(contenteditable)
 
-    CKEDITOR.inline(contenteditable, {
-      sharedSpaces: { top: 'editorToolbar' }
-    })
+    new Promise(function(resolve) {
+      CKEDITOR.on('instanceReady', evt => resolve())
 
-    yield function(cb) {
-      CKEDITOR.on('instanceReady', function() {
-        cb()
+      CKEDITOR.inline(contenteditable, {
+        sharedSpaces: { top: 'editorToolbar' }
       })
-    }
+    }).then(function() {
+      // Maximize editor
+      el.style['height'] = '100%'
+      content.style['height'] = 'calc(100% - 5em)'
+      contenteditable.style['height'] = '100%'
+      contenteditable.style['overflow-y'] = 'scroll'
+      contenteditable.style['padding'] = '5px'
 
-    // Maximize editor
-    document.querySelector('#editor').style['height'] = '100%'
-    content.style['height'] = 'calc(100% - 5em)'
-    contenteditable.style['height'] = '100%'
-    contenteditable.style['overflow-y'] = 'scroll'
-    contenteditable.style['padding'] = '5px'
-
-    // bind editor
-    return bindEditor(contenteditable)
+      // bind editor
+      return Promise.resolve(bindEditor(contenteditable))
+    })
   })
   register()
 }
