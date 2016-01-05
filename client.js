@@ -32,7 +32,7 @@ function setup(plugin, imports, register) {
     contenteditable.setAttribute('contenteditable', 'true')
     content.appendChild(contenteditable)
 
-    new Promise(function(resolve) {
+    return new Promise(function(resolve) {
       CKEDITOR.on('instanceReady', evt => resolve())
 
       CKEDITOR.inline(contenteditable, {
