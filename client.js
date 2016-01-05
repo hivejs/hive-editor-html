@@ -7,6 +7,8 @@ function setup(plugin, imports, register) {
   var editor = imports.editor
     , ui = imports.ui
 
+  window.CKEDITOR_BASEPATH = ui.baseURL+'/static/hive-editor-html-ckeditor/ckeditor/'
+
   // Load ckeditor
   var script = document.createElement('script')
   script.src = ui.baseURL+'/static/hive-editor-html-ckeditor/ckeditor/ckeditor.js'
@@ -37,6 +39,7 @@ function setup(plugin, imports, register) {
 
       CKEDITOR.inline(contenteditable, {
         sharedSpaces: { top: 'editorToolbar' }
+      , ...config
       })
     }).then(function() {
       // Maximize editor
@@ -51,4 +54,37 @@ function setup(plugin, imports, register) {
     })
   })
   register()
+}
+
+const config = {
+  // The toolbar groups arrangement, optimized for two toolbar rows.
+  toolbarGroups: [
+    { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+    { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+    { name: 'links' },
+    { name: 'insert' },
+    { name: 'forms' },
+    { name: 'tools' },
+    { name: 'document',     groups: [ 'mode', 'document', 'doctools' ] },
+    { name: 'others' },
+    '/',
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+    { name: 'styles' },
+    { name: 'colors' },
+    { name: 'about' }
+  ]
+
+  // Remove some buttons provided by the standard plugins, which are
+  // not needed in the Standard(s) toolbar.
+, removeButtons: 'Underline,Subscript,Superscript'
+
+  // Set the most common block elements.
+, format_tags: 'p;h1;h2;h3;pre'
+
+  // Simplify the dialog windows.
+, removeDialogTabs: 'image:advanced;link:advanced'
+
+  // disable loading of additional config files
+, customConfig: ''
 }
