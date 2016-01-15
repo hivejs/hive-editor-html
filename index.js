@@ -11,7 +11,7 @@ function setup(plugin, imports, register) {
   ui.registerModule(path.join(__dirname, 'client.js'))
   ui.registerStaticDir(path.join(__dirname, 'ckeditor'))
 
-  ot.registerOTType('html', domOT)
+  ot.registerOTType('text/html', domOT)
 
   register()
 }
