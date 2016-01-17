@@ -6,6 +6,7 @@
   "dependencies": {
     "gulf": "3.x",
     "gulf-contenteditable": "3.x",
+    "vdom-to-html": "2.x",
     "dom-ot": "2.x"
   },
   "scripts": {
