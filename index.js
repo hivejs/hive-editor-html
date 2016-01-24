@@ -25,6 +25,7 @@ function setup(plugin, imports, register) {
 
   importexport.registerImportProvider('text/html', 'text/html'
   , function*(document, user, data) {
+
     var sanitizedHtml = sanitizeHtml(data, {
       allowedTags: [ 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
       'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div',
@@ -34,7 +35,7 @@ function setup(plugin, imports, register) {
       , img: [ 'src' ]
       }
     })
-    var importedTree = domOT.create(sanitizedHtml)
+    var importedTree = domOT.create('<div>'+sanitizedHtml+'</div>')
 
     // get gulf doc and prepare changes
 
