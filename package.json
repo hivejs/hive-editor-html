@@ -4,8 +4,8 @@
   "description": "Rich text editor for hive.js",
   "main": "index.js",
   "dependencies": {
-    "gulf": "3.x",
-    "gulf-contenteditable": "3.x",
+    "gulf": "4.x",
+    "gulf-contenteditable": "4.x",
     "vdom-to-html": "2.x",
     "sanitize-html": "1.x",
     "dom-ot": "2.x"
