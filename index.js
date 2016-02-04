@@ -58,8 +58,7 @@ function setup(plugin, imports, register) {
       gulfDoc.receiveEdit(JSON.stringify({
         cs: JSON.stringify(changes)
       , parent: snapshot.id
-      , user: user
-      }), null, cb)
+      }), user.id, null, cb)
     }
   })
 
