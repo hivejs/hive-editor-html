@@ -22,6 +22,7 @@ function setup(plugin, imports, register) {
     var toolbar = document.createElement('div')
     toolbar.setAttribute('class', 'Editor__toolbar')
     toolbar.setAttribute('id', 'editorToolbar')
+    toolbar.style['display'] = 'none' // Don't display until the content is loaded
     el.appendChild(toolbar)
 
     // Create content
@@ -38,19 +39,24 @@ function setup(plugin, imports, register) {
       CKEDITOR.on('instanceReady', evt => resolve())
 
       CKEDITOR.inline(contenteditable, {
-        sharedSpaces: { top: 'editorToolbar' }
+	sharedSpaces: { top: 'editorToolbar' }
       , ...config
       })
-    }).then(function() {
-      // Maximize editor
-      el.style['height'] = '100%'
-      content.style['height'] = 'calc(100% - 5em)'
-      contenteditable.style['height'] = '100%'
-      contenteditable.style['overflow-y'] = 'scroll'
-      contenteditable.style['padding'] = '5px'
-
+    })
+    .then(() => {
       // bind editor
-      return Promise.resolve(bindEditor(contenteditable))
+      var doc = bindEditor(contenteditable)
+      doc.once('editableInitialized', () => {
+	// on init: Maximize editor + display toolbar
+	el.style['height'] = '100%'
+	content.style['height'] = 'calc(100% - 5em)'
+	contenteditable.style['height'] = '100%'
+	contenteditable.style['overflow-y'] = 'scroll'
+	contenteditable.style['padding'] = '5px'
+	toolbar.style['display'] = 'block'
+      })
+
+      return Promise.resolve(doc)
     })
   })
   register()
