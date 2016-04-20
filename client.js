@@ -1,11 +1,12 @@
 var bindEditor = require('gulf-contenteditable')
 
 module.exports = setup
-module.exports.consumes = ['ui', 'editor']
+module.exports.consumes = ['ui', 'settings', 'editor']
 module.exports.provides = []
 function setup(plugin, imports, register) {
   var editor = imports.editor
     , ui = imports.ui
+    , settings = imports.settings
 
   window.CKEDITOR_BASEPATH = ui.baseURL+'/static/hive-editor-html-ckeditor/ckeditor/'
 
@@ -40,6 +41,7 @@ function setup(plugin, imports, register) {
 
       CKEDITOR.inline(contenteditable, {
 	sharedSpaces: { top: 'editorToolbar' }
+      , language: settings.getForUser('ui:locale')
       , ...config
       })
     })
