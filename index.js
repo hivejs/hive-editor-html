@@ -14,6 +14,7 @@ function setup(plugin, imports, register) {
   var orm = imports.orm
 
   ui.registerModule(path.join(__dirname, 'client.js'))
+  ui.registerStylesheet(path.join(__dirname, 'index.css'))
   ui.registerStaticDir(path.join(__dirname, 'ckeditor'))
 
   ot.registerOTType('text/html', domOT)
