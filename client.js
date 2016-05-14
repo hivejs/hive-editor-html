@@ -56,8 +56,8 @@ function setup(plugin, imports, register) {
       CKEDITOR.on('instanceReady', evt => resolve())
 
       CKEDITOR.inline(contenteditable, {
-	sharedSpaces: { top: 'editorToolbar' }
-      , language: settings.getForUser('ui:locale')
+        language: settings.getForUser('ui:locale')
+      , sharedSpaces: { top: toolbar }
       , ...config
       })
     })
@@ -65,13 +65,13 @@ function setup(plugin, imports, register) {
       // bind editor
       var doc = bindEditor(contenteditable)
       doc.once('editableInitialized', () => {
-	// on init: Maximize editor + display toolbar
-	el.style['height'] = '100%'
-	content.style['height'] = 'calc(100% - 5em)'
-	contenteditable.style['height'] = '100%'
-	contenteditable.style['overflow-y'] = 'scroll'
-	contenteditable.style['padding'] = '5px'
-	toolbar.style['display'] = 'block'
+        // on init: Maximize editor + display toolbar
+        el.style['height'] = '100%'
+        content.style['height'] = 'calc(100% - 105px)'
+        contenteditable.style['height'] = '100%'
+        contenteditable.style['overflow-y'] = 'scroll'
+        contenteditable.style['padding'] = '5px'
+        toolbar.style['display'] = 'block'
       })
 
       return Promise.resolve(doc)
@@ -99,9 +99,62 @@ const config = {
     { name: 'about' }
   ]
 
-  // Remove some buttons provided by the standard plugins, which are
-  // not needed in the Standard(s) toolbar.
-, removeButtons: 'Underline,Subscript,Superscript'
+, stylesSet: [
+    /* Inline styles */
+    { name: 'Marker',      element: 'span', attributes: { 'class': 'marker' } },
+
+    { name: 'Big',        element: 'big' },
+    { name: 'Small',      element: 'small' },
+    { name: 'Typewriter',    element: 'tt' },
+
+    { name: 'Computer Code',  element: 'code' },
+    { name: 'Keyboard Phrase',  element: 'kbd' },
+    { name: 'Sample Text',    element: 'samp' },
+    { name: 'Variable',      element: 'var' },
+
+    { name: 'Deleted Text',    element: 'del' },
+    { name: 'Inserted Text',  element: 'ins' },
+
+    { name: 'Cited Work',    element: 'cite' },
+    { name: 'Inline Quotation',  element: 'q' },
+
+    { name: 'Language: RTL',  element: 'span', attributes: { 'dir': 'rtl' } },
+    { name: 'Language: LTR',  element: 'span', attributes: { 'dir': 'ltr' } },
+
+    /* Object Styles */
+
+    {
+      name: 'Styled image (left)',
+      element: 'img',
+      attributes: { 'class': 'left' }
+    },
+
+    {
+      name: 'Styled image (right)',
+      element: 'img',
+      attributes: { 'class': 'right' }
+    },
+
+    {
+      name: 'Compact table',
+      element: 'table',
+      attributes: {
+        cellpadding: '5',
+        cellspacing: '0',
+        border: '1',
+        bordercolor: '#ccc'
+      },
+      styles: {
+        'border-collapse': 'collapse'
+      }
+    },
+
+    { name: 'Borderless Table',    element: 'table',  styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
+    { name: 'Square Bulleted List',  element: 'ul',    styles: { 'list-style-type': 'square' } }
+  ]
+
+  // Remove some buttons
+//, removeButtons: 'Underline,Subscript,Superscript'
 
   // Set the most common block elements.
 , format_tags: 'p;h1;h2;h3;pre'
