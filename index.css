@@ -1,0 +1,3 @@
+.Editor__content div[contenteditable]:focus {
+  outline: none;
+}
