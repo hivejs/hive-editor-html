@@ -83,7 +83,7 @@ function setup(plugin, imports, register) {
 const config = {
   // The toolbar groups arrangement, optimized for two toolbar rows.
   toolbarGroups: [
-    { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+    { name: 'clipboard',   groups: [ 'clipboard'] },
     { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
     { name: 'links' },
     { name: 'insert' },
@@ -154,7 +154,7 @@ const config = {
   ]
 
   // Remove some buttons
-//, removeButtons: 'Underline,Subscript,Superscript'
+, removeButtons: 'Anchor,CreateDiv'
 
   // Set the most common block elements.
 , format_tags: 'p;h1;h2;h3;pre'
